@@ -3,14 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     status: 'checking',
     user: {
-        uid:                    'null',
+        uid:                    null,
         firstName:              null,
         lastName:               null,
         email:                  null,
         favorites:              null
     },
-    errorMessage: undefined,
-    msg: undefined
+    errorMessage: null,
+    msg: null
 };
 
 export const authSlice = createSlice({
@@ -34,7 +34,7 @@ export const authSlice = createSlice({
         onAuthRegister: (state, { payload }) => {
 
             state.status = 'registered';
-            state.user = payload.user;
+            state.user = {};
             state.errorMessage = undefined;
             state.msg = payload.msg;
 
