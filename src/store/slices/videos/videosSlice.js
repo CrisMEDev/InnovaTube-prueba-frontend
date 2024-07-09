@@ -38,7 +38,7 @@ export const videosSlice = createSlice({
             prevPageToken:    null,
             totalResults:     null,
             resultsPerPage:   null,
-            videos:           null
+            videos:           []
          };
          state.errorMessage = payload;
          state.msg = null;

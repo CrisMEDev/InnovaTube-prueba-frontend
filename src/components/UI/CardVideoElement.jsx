@@ -1,15 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-// favorite value '#FF073D'
-export const CardVideoElement = ({favorite, id, publishedAt, title, description, url}) => {
-   
+import { useUiStore } from '../../hooks/useUiStore';
+
+
+export const CardVideoElement = ({ favorite = false, id, publishedAt, title, description, url }) => {
+
+   const [toggleFavorite, setToggleFavorite] = useState(favorite);
+   const { favorites } = useSelector(state => state.ui);
+   const { innovaData } = useSelector(state => state.videos);
+   const { startUpdateFavorites } = useUiStore();
+
+   const handleToggleFavorite = () => {
+      setToggleFavorite(!toggleFavorite);
+
+      if (toggleFavorite){
+         const deleteVideoId = document.getElementById(id).id;
+         const updateFavs = [...favorites];
+         const index = updateFavs.find((fav, index) => {
+            if (deleteVideoId === fav.id.videoId)
+               return index;
+         });
+         updateFavs.splice(index, 1);
+
+         startUpdateFavorites({favs: updateFavs});
+      }
+
+      if (!toggleFavorite) {
+         const videoId = document.getElementById(id).id;
+         const fav = innovaData.videos.find((vid, index) => {
+            if (vid.id.videoId === videoId)
+               return innovaData.videos[index];
+         });
+
+         const updateFavs = favorites.length ? [...favorites] : [];
+         updateFavs.push(fav);
+         
+         startUpdateFavorites({ favs: updateFavs });
+      }
+   }
+
    return (
       <div className="relative flex flex-col shadow-md rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 max-w-sm">
-         <a className="text-slate-300 hover:text-cyan-800 absolute z-30 top-2 right-0 mt-2 mr-3">
-            <svg xmlns="http://www.w3.org/2000/svg" fill={`${favorite ? favorite : 'none'}`} viewBox="0 0 24 24" strokeWidth="1.5" stroke={`${favorite ? favorite : 'currentColor'}`} className="w-6 h-6">
+         <button
+            id={id}
+            onClick={handleToggleFavorite}
+            type='button'
+            className="text-slate-300 hover:text-cyan-800 absolute z-30 top-2 right-0 mt-2 mr-3">
+            <svg xmlns="http://www.w3.org/2000/svg" fill={`${toggleFavorite ? '#FF073D' : 'none'}`} viewBox="0 0 24 24" strokeWidth="1.5" stroke={`${toggleFavorite ? '#FF073D' : 'currentColor'}`} className="w-6 h-6">
                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
             </svg>
-         </a>
+         </button>
          <a className="z-20 absolute h-full w-full top-0 left-0 ">&nbsp;</a>
          <div className="h-auto overflow-hidden">
             <div className="h-44 overflow-hidden relative">

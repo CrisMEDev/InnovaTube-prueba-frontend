@@ -6,8 +6,12 @@ import {
     onAuthLogout,
     onChecking,
     onAuthRegister,
-    clearErrorMessage,
+    clearErrorMessage
 } from '../store/slices/auth';
+import {
+    onUpdateFavorites,
+    onLogout as onLogoutUi
+} from '../store/slices/ui';
 
 
 export const useAuthStore = () => {
@@ -29,6 +33,7 @@ export const useAuthStore = () => {
             localStorage.setItem('token-init-date', new Date().getTime());  // Para checar si el token está por expirar
 
             dispatch(onAuthLogin(userLogin));
+            dispatch(onUpdateFavorites(user.favorites));
 
         } catch (error) {
             
@@ -95,6 +100,7 @@ export const useAuthStore = () => {
 
         localStorage.clear();
         dispatch(onAuthLogout());
+        dispatch(onLogoutUi());
 
     }
 
@@ -108,6 +114,7 @@ export const useAuthStore = () => {
             localStorage.setItem('token-init-date', new Date().getTime());
 
             dispatch(onAuthLogin(data.user));
+            dispatch(onUpdateFavorites(data.user.favorites));
 
         } catch (error) {
             localStorage.clear();

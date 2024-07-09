@@ -32,7 +32,6 @@ export const useVideosStore = () => {
          }));
 
       } catch (error) {
-
          // Atrapa el primer error en un string
          let msg = error.response.data.errors ? error.response.data.errors[0].msg
             : error.response.data.msg;
