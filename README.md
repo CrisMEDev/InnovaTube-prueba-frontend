@@ -1,8 +1,24 @@
-# React + Vite
+# INNOVATUBE DOCS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Comenzando el proyecto
 
-Currently, two official plugins are available:
+Crear las variables de entorno necesarias para iniciar el proyecto.
+Crear el archivo ".env" sobre la raíz del proyecto y agregar las variables de la siguiente manera:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+
+VITE_BASE_URL_BACKEND=http://localhost:8080/innova-tube/
+
+
+```
+##  Dependencias
+
+Para instalar las dependencias utilizadas en el proyecto ejecuta el comando:
+
+### `npm install`
+
+##  Ejecutar proyecto
+
+Para ejecutar el proyecto en modo desarrollo ejecuta el comando:
+
+### `npm run dev`
