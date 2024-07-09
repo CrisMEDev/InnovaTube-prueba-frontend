@@ -12,7 +12,7 @@ export const DashboardPrivateRoutes = () => {
 
          <Routes>
 
-            <Route path='/*' element={<PrincipalScreen />} />
+            <Route path='/general' element={<PrincipalScreen />} />
 
             <Route path='/favoritos' element={<FavoritesScreen />} />
 

@@ -9,7 +9,7 @@ export const PrivateRoute = ({ children }) => {
       !!(user.uid)
          ? children
          : <Navigate to='/' />   // Si no ha iniciado sesión e intenta accesar a otra ruta
-      // lo regresa al home
+                                 // lo regresa al home
    );
 
 }
