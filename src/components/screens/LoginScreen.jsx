@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { useForm, useAuthStore } from '../../hooks';
 import { ModalErrorMessage } from '../alerts/ModalErrorMessage';
@@ -18,7 +18,7 @@ export const LoginScreen = () => {
 
    const dispatch = useDispatch();
 
-   const { status, errorMessage, startLogin, checkAuthToken } = useAuthStore();
+   const { status, errorMessage, startLogin } = useAuthStore();
    const [formLoginValues, handleFormLoginValues] = useForm(initState);
    const { email, password } = formLoginValues;
 
