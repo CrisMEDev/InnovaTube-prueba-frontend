@@ -33,7 +33,7 @@ export const CardVideoElement = ({ favorite = false, id, publishedAt, title, des
                return innovaData.videos[index];
          });
 
-         const updateFavs = favorites.length ? [...favorites] : [];
+         const updateFavs = favorites?.length ? [...favorites] : [];
          updateFavs.push(fav);
          
          startUpdateFavorites({ favs: updateFavs });

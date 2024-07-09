@@ -33,7 +33,7 @@ export const useAuthStore = () => {
             localStorage.setItem('token-init-date', new Date().getTime());  // Para checar si el token está por expirar
 
             dispatch(onAuthLogin(userLogin));
-            dispatch(onUpdateFavorites(user.favorites));
+            dispatch(onUpdateFavorites(userLogin.favorites));
 
         } catch (error) {
             
