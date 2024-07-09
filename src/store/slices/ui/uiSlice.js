@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
    status: 'checking',
    favorites: [],
+   searchQueryFavs: '',
    errorMessage: null,
    msg: null
 };
@@ -23,11 +24,19 @@ export const uiSlice = createSlice({
          state.errorMessage = null;
          state.msg = null;
       },
+      onSearchQueryFavs: (state, {payload}) => {
+         state.searchQueryFavs = payload;
+      },
       onLogout: (state) => {
          state.status = 'checking',
          state.favorites = [],
          state.errorMessage = null,
          state.msg = null
+      },
+      clearSearchQueryFavs: (state) => {
+
+         state.searchQueryFavs = '';
+
       },
       clearErrorMessage: (state) => {
 
@@ -46,6 +55,8 @@ export const {
    onChecking,
    onUpdateFavorites,
    onLogout,
+   onSearchQueryFavs,
+   clearSearchQueryFavs,
    clearErrorMessage,
    clearMsg
 } = uiSlice.actions;
